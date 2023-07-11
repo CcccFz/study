@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  background-color: #f5f6f7;
+  font-family: sans-serif;
+}
+
+header {
+  padding: 30px 0;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: black;
+  color: #fff;
+  border-bottom: 4px solid #fdb347;
+}
+
+.gallery {
+  display: flex;
+  margin: 20px auto;
+  max-width: 1400px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 350px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
