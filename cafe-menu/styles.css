@@ -4,19 +4,19 @@ body {
 
 hr {
   height: 2px;
-  background-color: #982727;
-  border-color: #982727;
+  background-color: brown;
+  border-color: brown;
 }
 
 a {
   color: black;
 }
 a:hover {
-  color: #a52a45;
+  color: brown;
 }
 
 img {
-  margin-top: -20px;
+  margin-top: -25px;
 }
 
 h1, h2 {
@@ -39,15 +39,15 @@ footer p {
 }
 
 section {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 
 .menu {
-  margin: 30px auto;
-  padding: 0 20px 0 20px;
+  background-color: burlywood;
   width: 500px;
-  background-color: #deb887;
+  margin: 30px auto;
+  padding: 0 20px;
   text-align: center;
   overflow: hidden;
 }
