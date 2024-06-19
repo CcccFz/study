@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+  border-bottom: 1px solid #ccc;
+  font-size: 35px;
+  line-height: 60px;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+li {
+  height: 55px;
+  line-height: 55px;
+  padding-left: 30px;
+  border-bottom: 1px dashed #ccc;
+}
+
+a {
+  color: rgb(105, 104, 104);
+  text-decoration: none;
+  font-size: 22px;
+  
+}
+
+.box {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 35px 30px;
+  border: 1px solid #ccc;
+}
