@@ -11,6 +11,7 @@ hr {
 a {
   color: black;
 }
+
 a:hover {
   color: brown;
 }
@@ -19,12 +20,15 @@ img {
   margin-top: -25px;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: Impact, serif;
 }
+
 h1 {
   font-size: 40px;
 }
+
 h2 {
   font-size: 30px;
 }
@@ -58,14 +62,17 @@ section {
   font-size: 16px;
 }
 
-.item, .price {
+.item,
+.price {
   display: inline-block;
   margin: 5px 0;
   width: 50%;
 }
+
 .item {
   text-align: left;
 }
+
 .price {
   text-align: right;
 }
