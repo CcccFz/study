@@ -1,0 +1,45 @@
+.nav {
+  text-align: center;
+}
+
+.nav a {
+  display: inline-block;
+  width: 120px;
+  height: 58px;
+  color: white;
+  text-align: center;
+  line-height: 54px;
+  text-decoration: none;
+}
+
+.nav1 {
+  background: url(nav1.png) no-repeat;
+}
+
+.nav1:hover {
+  background: url(nav11.png);
+}
+
+.nav2 {
+  background: url(nav2.png) no-repeat;
+}
+
+.nav2:hover {
+  background: url(nav22.png);
+}
+
+.nav3 {
+  background: url(nav3.png) no-repeat;
+}
+
+.nav3:hover {
+  background: url(nav33.png);
+}
+
+.nav4 {
+  background: url(nav4.png) no-repeat;
+}
+
+.nav4:hover {
+  background: url(nav44.png);
+}
