@@ -35,7 +35,6 @@ a {
   /* *zoom: 1; */
 }
 
-
 .header {
   height: 42px;
   margin: 30px auto;
@@ -43,55 +42,60 @@ a {
 
 .logo {
   float: left;
-  width: 195px;
+  width: 196px;
   height: 42px;
 }
 
 .nav {
   float: left;
-  margin-left: 50px;
+  margin-left: 60px;
 }
 
 .nav ul li {
   float: left;
-  margin-left: 15px;
+  margin: 0 12.5px;
 }
 
 .nav ul li a {
-  padding: 10px;
+  display: inline-block;
+  height: 42px;
+  padding: 0 10px;
   font-size: 18px;
   color: #050505;
   line-height: 42px;
 }
 
 .nav ul li a:hover {
+  border-bottom: 2px solid #00a4ff;
   color: #00a4ff;
-  border-bottom: 1px solid #00a4ff;
 }
 
 .search {
   float: left;
-  width: 412px;
-  height: 42px;
   margin-left: 70px;
+  height: 42px;
+  width: 412px;
 }
 
 .search input {
   float: left;
-  width: 340px;
   height: 38px;
+  width: 340px;
   padding-left: 20px;
-  background: #f3f5f7;
+  background-color: #f3f5f7;
   border: 1px solid #00a4ff;
   border-right: none;
   font-size: 14px;
+}
+
+.search input::placeholder {
   color: #bfbfbf;
 }
 
 .search button {
   float: left;
+  height: 41px;
   width: 50px;
-  height: 40px;
   border: none;
   background: url(images/btn.png);
 }
@@ -99,13 +103,149 @@ a {
 .user {
   float: left;
   margin-left: 30px;
-  height: 42px;
-  line-height: 42px;
   font-size: 14px;
   color: #666;
 }
 
 .banner {
   height: 420px;
-  background-color: pink;
+  background: #1c036c;
+}
+
+.banner .w {
+  height: 420px;
+  background: url(images/banner.png) no-repeat center top;
+}
+
+.banner .subnav {
+  float: left;
+  height: 420px;
+  width: 190px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.banner .subnav ul {
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.banner .subnav ul li {
+  height: 45px;
+}
+
+.banner .subnav ul li a {
+  display: block;
+  width: 100%;
+  float: left;
+  height: 45px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 45px;
+}
+
+.banner .subnav ul li a:hover {
+  color: #00a4ff;
+}
+
+.banner .subnav ul li span {
+  float: right;
+}
+
+.banner .course {
+  float: right;
+  width: 230px;
+  height: 300px;
+  margin-top: 55px;
+}
+
+.banner .course h2 {
+  width: 100%;
+  height: 45px;
+  background: #9bceea;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  line-height: 45px;
+}
+
+.banner .course .bd {
+  height: 255px;
+  background: #fff;
+}
+
+.banner .course .bd ul {
+  margin: 0 20px;
+}
+
+.banner .course .bd li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.banner .course .bd li h4 {
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+.banner .course .bd li p {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #a5a5a5;
+}
+
+.banner .course .bd .more {
+  display: block;
+  width: 200px;
+  height: 40px;
+  margin: 10px auto 0;
+  border: 1px solid #00a4ff;
+  font-size: 16px;
+  color: #00a4ff;
+  text-align: center;
+  line-height: 40px;
+}
+
+.goods {
+  height: 60px;
+  margin-top: 10px;
+  background: #fff;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.goods h4 {
+  float: left;
+  padding: 0 35px;
+  color: #00a4ff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.goods ul {
+  float: left;
+}
+
+.goods ul li {
+  float: left;
+  line-height: 60px;
+}
+
+.goods ul li a {
+  padding: 0 35px;
+  border-left: 1px solid #bfbfbf;
+  color: #050505;
+  font-size: 16px;
+}
+
+.goods ul li a:hover {
+  color: #00a4ff;
+}
+
+.goods>a {
+  float: right;
+  margin-right: 25px;
+  color: #00a4ff;
+  font-size: 14px;
+  line-height: 60px;
 }
