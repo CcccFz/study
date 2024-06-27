@@ -113,27 +113,27 @@ a {
 }
 
 .banner .w {
-  height: 420px;
+  height: 100%;
   background: url(images/banner.png) no-repeat center top;
 }
 
-.banner .subnav {
+.subnav {
   float: left;
   height: 420px;
   width: 190px;
   background: rgba(0, 0, 0, 0.3);
 }
 
-.banner .subnav ul {
+.subnav ul {
   margin-top: 10px;
   padding: 0 20px;
 }
 
-.banner .subnav ul li {
+.subnav ul li {
   height: 45px;
 }
 
-.banner .subnav ul li a {
+.subnav ul li a {
   display: block;
   width: 100%;
   float: left;
@@ -143,22 +143,22 @@ a {
   line-height: 45px;
 }
 
-.banner .subnav ul li a:hover {
+.subnav ul li a:hover {
   color: #00a4ff;
 }
 
-.banner .subnav ul li span {
+.subnav ul li span {
   float: right;
 }
 
-.banner .course {
+.course {
   float: right;
   width: 230px;
   height: 300px;
   margin-top: 55px;
 }
 
-.banner .course h2 {
+.course h2 {
   width: 100%;
   height: 45px;
   background: #9bceea;
@@ -169,32 +169,32 @@ a {
   line-height: 45px;
 }
 
-.banner .course .bd {
+.course .bd {
   height: 255px;
   background: #fff;
 }
 
-.banner .course .bd ul {
+.course .bd ul {
   margin: 0 20px;
 }
 
-.banner .course .bd li {
+.course .bd li {
   padding: 12px 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
-.banner .course .bd li h4 {
+.course .bd li h4 {
   font-size: 16px;
   color: #4e4e4e;
 }
 
-.banner .course .bd li p {
+.course .bd li p {
   margin-top: 3px;
   font-size: 12px;
   color: #a5a5a5;
 }
 
-.banner .course .bd .more {
+.course .bd .more {
   display: block;
   width: 200px;
   height: 40px;
@@ -248,4 +248,154 @@ a {
   color: #00a4ff;
   font-size: 14px;
   line-height: 60px;
+}
+
+
+.hd {
+  margin-top: 35px;
+  height: 40px;
+}
+
+.hd h2 {
+  float: left;
+  color: #494949;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.hd ul {
+  float: left;
+  margin-left: 250px;
+}
+
+.hd ul li {
+  float: left;
+  margin: 0 37px;
+  color: #868686;
+  font-size: 16px;
+}
+
+.hd ul li:hover {
+  color: #00a4ff;
+  cursor: pointer;
+}
+
+.hd a {
+  float: right;
+  margin: 8px 35px 0 0;
+  color: #a5a5a5;
+  font-size: 12px;
+}
+
+.recommend ul {
+  width: 1215px;
+}
+
+.card {
+  float: left;
+  width: 228px;
+  height: 270px;
+  margin: 0 15px 15px 0;
+  background: #fff;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 155px;
+}
+
+.card h4 {
+  height: 32px;
+  margin: 25px 20px 20px 24px;
+  color: #050505;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card .info {
+  margin: 0 20px 0 24px;
+  color: #999;
+  font-size: 12px;
+}
+
+.card .info .level {
+  color: #ff7c2d;
+  font-size: 12px;
+}
+
+.base .bd {
+  height: 392px;
+}
+
+.bd .left {
+  float: left;
+  width: 228px;
+  height: 100%;
+}
+
+.bd .right {
+  float: right;
+  width: 957px;
+}
+
+.bd .top {
+  width: 100%;
+  height: 100px;
+}
+
+.base .bd ul {
+  margin-top: 18px;
+  width: 972px;
+}
+
+.footer {
+  height: 417px;
+  margin-top: 40px;
+  background: #fff;
+}
+
+.inc,
+.links {
+  float: left;
+  padding: 33px 22px;
+}
+
+.inc p {
+  margin-top: 15px;
+  color: #666;
+  font-size: 12px;
+}
+
+.inc a {
+  display: block;
+  width: 120px;
+  height: 36px;
+  margin-top: 15px;
+  border: 1px solid #00a4ff;
+  color: #00a4ff;
+  font-size: 16px;
+  text-align: center;
+  line-height: 36px;
+}
+
+.links dl {
+  float: left;
+  margin-left: 145px;
+}
+
+.links dt {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+}
+
+.links dd a {
+  color: #333;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.links dd a:hover {
+  color: #00a4ff;
 }
