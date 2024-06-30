@@ -1,0 +1,32 @@
+a {
+  text-decoration: none;
+}
+
+.banner {
+  height: 500px;
+  background: #f3f3f4 url(images/bk.png) no-repeat bottom left;
+
+  text-align: right;
+  color: #333;
+}
+
+.banner h2 {
+  height: 100px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 100px;
+}
+
+.banner p {
+  font-size: 20px;
+}
+
+.banner a {
+  display: inline-block;
+  width: 125px;
+  height: 40px;
+  background-color: #f06b1f;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}

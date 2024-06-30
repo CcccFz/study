@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-register-page</title>
+</head>
+
+<body>
+  <h1>注册信息</h1>
+  <form action="">
+    <h2>个人信息</h2>
+    <label>姓名: </label>
+    <input type="text" placeholder="请输入真实姓名">
+    <br><br>
+    <label>密码: </label>
+    <input type="password" placeholder="请输入密码">
+    <br><br>
+    <label>确认密码: </label>
+    <input type="password" placeholder="请输入确认密码">
+    <br><br>
+    <label>性别: </label>
+    <label><input type="radio" name="gender" value="男" checked> 男</label>
+    <label><input type="radio" name="gender" value="女"> 女</label>
+    <br><br>
+    <label>居住城市: </label>
+    <select name="city">
+      <option value="" disabled selected>请选择</option>
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="成都">成都</option>
+      <option value="武汉">武汉</option>
+    </select>
+
+    <h2>教育经历</h2>
+    <label>最高学历: </label>
+    <select>
+      <option value="博士">博士</option>
+      <option value="硕士">硕士</option>
+      <option value="本科" selected>本科</option>
+      <option value="大专">大专</option>
+    </select>
+    <br><br>
+    <label>学校名称: </label>
+    <input type="text" placeholder="请输入学校">
+    <br><br>
+    <label>专业: </label>
+    <input type="text" placeholder="请输入学专业">
+    <br><br>
+    <label>在校时间: </label>
+    <select>
+      <option value="2015">2015</option>
+      <option value="2016">2016</option>
+      <option value="2017">2017</option>
+      <option value="2018" selected>2018</option>
+    </select>
+    --
+    <select>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022" selected>2022</option>
+    </select>
+
+    <h2>工作经历</h2>
+    <label>公司名称: </label>
+    <input type="text" placeholder="请输入公司">
+    <br><br>
+    <label>工作描述: </label><br>
+    <textarea placeholder="请输入工作描述"></textarea>
+    <br><br>
+    <label><input type="checkbox" value="true"> 已阅读同意以下条款</label>
+    <ul>
+      <li><a href="#">《用户服务协议》</a></li>
+      <li><a href="#">《隐私政策》</a></li>
+    </ul>
+
+    <br><br><br>
+    <button>免费注册</button> <button type="reset">重新填写</button>
+  </form>
+</body>
+
+</html>
