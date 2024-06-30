@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>news list</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .news {
+      margin: 30px auto 0;
+      width: 360px;
+      height: 190px;
+    }
+
+    .news .hd {
+      height: 32px;
+      background-color: #eee;
+      border: 1px solid #dbdee1;
+      border-left: none;
+    }
+
+    .news .hd a {
+      display: block;
+      margin-top: -1px;
+      width: 48px;
+      height: 32px;
+      background-color: #fff;
+      border-top: 3px solid #ff8400;
+      border-right: 1px solid #dbdee1;
+      font-size: 14px;
+      color: #333;
+      text-align: center;
+      line-height: 28px;
+    }
+
+    .news .bd {
+      padding-left: 5px;
+    }
+
+    .news .bd li {
+      padding-left: 15px;
+      background: url(images/square.png) no-repeat left center;
+    }
+
+    .news .bd li a {
+      display: block;
+      padding-left: 20px;
+      background: url(images/img.gif) no-repeat 0 center;
+      color: #666;
+      font-size: 12px;
+      line-height: 24px;
+    }
+
+    .news .bd li a:hover {
+      color: #ff8400;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="news">
+    <div class="hd">
+      <a href="#">新闻</a>
+    </div>
+    <ul class="bd">
+      <li><a href="#">点赞“新农人” 温暖的伸手</a></li>
+      <li><a href="#">在希望的田野上...</a></li>
+      <li><a href="#">“中国天眼”又有新发现 已在《自然》杂志发表</a></li>
+      <li><a href="#">急！这个领域，缺人！月薪4万元还不好招！啥情况？</a></li>
+      <li><a href="#">G9“带货”背后：亏损面持续扩大，竞争环境激烈</a></li>
+      <li><a href="#">多地力推二手房“带押过户”，有什么好处？</a></li>
+    </ul>
+  </div>
+</body>
+
+</html>
