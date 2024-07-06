@@ -15,24 +15,19 @@ a {
   text-decoration: none;
 }
 
-.w {
-  width: 1200px;
-  margin: auto;
-}
-
-.clearfix:before,
-.clearfix:after {
+.clearfix::before,
+.clearfix::after {
   content: "";
   display: table;
 }
 
-.clearfix:after {
+.clearfix::after {
   clear: both;
 }
 
-.clearfix {
-  zoom: 1;
-  /* *zoom: 1; */
+.w {
+  width: 1200px;
+  margin: auto;
 }
 
 .header {
