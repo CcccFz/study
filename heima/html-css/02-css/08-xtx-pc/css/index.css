@@ -353,7 +353,7 @@
 }
 
 .topic-bd .pic {
-  position: absolute;
+  position: relative;
   width: 405px;
   height: 288px;
 }
@@ -366,6 +366,7 @@
   width: 405px;
   height: 67px;
   font-size: 14px;
+  color: #666;
 }
 
 .topic-bd .txt .left {
@@ -381,9 +382,16 @@
 }
 
 .topic-bd .cover {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
   left: 0;
   bottom: 0;
+  padding: 0 15px;
+  width: 405px;
+  height: 90px;
+  background-image: linear-gradient(180deg, rgba(137, 137, 137, 0.00) 0%, rgba(0, 0, 0, 0.90) 100%);
 }
 
 .topic-bd .cover .left {
@@ -393,4 +401,17 @@
 .topic-bd .cover .left h4 {
   margin-bottom: 6px;
   font-size: 20px;
+}
+
+.topic-bd .cover .right {
+  padding: 0 7px;
+  height: 25px;
+  background-color: #fff;
+  font-size: 15px;
+  line-height: 25px;
+  color: #AA2113;
+}
+
+.topic-bd .cover .right span {
+  font-size: 18px;
 }
