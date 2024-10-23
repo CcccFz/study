@@ -1,0 +1,87 @@
+// out: ../css/
+
+.bg-body-tertiary {
+  background-color: transparent !important;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+.carousel {
+  @media (max-width: 768px) {
+    .carousel-item {
+      height: 250px;
+    }
+  }
+  @media (min-width: 768px) {
+    .carousel-item {
+      height: 400px;
+    }
+  }
+  @media (min-width: 992px) {
+    .carousel-item {
+      height: 500px;
+    }
+  }
+
+  .carousel-item {
+    background-size: cover;
+    background-position: center 0;
+
+    &:nth-child(1) {
+      background-image: url("../assets/uploads/banner_1.jpg");
+    }
+
+    &:nth-child(2) {
+      background-image: url("../assets/uploads/banner_2.jpg");
+    }
+
+    &:nth-child(3) {
+      background-image: url("../assets/uploads/banner_3.jpg");
+    }
+
+    &:nth-child(4) {
+      background-image: url("../assets/uploads/banner_4.jpg");
+    }
+  }
+}
+
+.project {
+  margin-top: 50px;
+  text-align: center;
+
+  .row {
+    margin-top: 20px;
+
+    div {
+      margin-bottom: 10px;
+      
+      a {
+        display: block;
+        height: 200px;
+        border-radius: 5px;
+        text-decoration: none;
+        line-height: 200px;
+        color: white;
+        
+      }
+
+      &:nth-child(1) a {
+        background-color: red;
+      }
+
+      &:nth-child(2) a {
+        background-color: green;
+      }
+
+      &:nth-child(3) a {
+        background-color: skyblue;
+      }
+
+      &:nth-child(4) a {
+        background-color: yellow;
+      }
+    }
+  }
+}

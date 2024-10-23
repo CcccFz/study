@@ -1,0 +1,67 @@
+.bg-body-tertiary {
+  background-color: transparent !important;
+}
+.navbar-collapse {
+  flex-grow: 0;
+}
+@media (max-width: 768px) {
+  .carousel .carousel-item {
+    height: 250px;
+  }
+}
+@media (min-width: 768px) {
+  .carousel .carousel-item {
+    height: 400px;
+  }
+}
+@media (min-width: 992px) {
+  .carousel .carousel-item {
+    height: 500px;
+  }
+}
+.carousel .carousel-item {
+  background-size: cover;
+  background-position: center 0;
+}
+.carousel .carousel-item:nth-child(1) {
+  background-image: url("../assets/uploads/banner_1.jpg");
+}
+.carousel .carousel-item:nth-child(2) {
+  background-image: url("../assets/uploads/banner_2.jpg");
+}
+.carousel .carousel-item:nth-child(3) {
+  background-image: url("../assets/uploads/banner_3.jpg");
+}
+.carousel .carousel-item:nth-child(4) {
+  background-image: url("../assets/uploads/banner_4.jpg");
+}
+.project {
+  margin-top: 50px;
+  text-align: center;
+}
+.project .row {
+  margin-top: 20px;
+}
+.project .row div {
+  margin-bottom: 10px;
+}
+.project .row div a {
+  display: block;
+  height: 200px;
+  border-radius: 5px;
+  text-decoration: none;
+  line-height: 200px;
+  color: white;
+}
+.project .row div:nth-child(1) a {
+  background-color: red;
+}
+.project .row div:nth-child(2) a {
+  background-color: green;
+}
+.project .row div:nth-child(3) a {
+  background-color: skyblue;
+}
+.project .row div:nth-child(4) a {
+  background-color: yellow;
+}
