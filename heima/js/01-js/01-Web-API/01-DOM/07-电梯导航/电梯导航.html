@@ -1217,24 +1217,62 @@
   </div>
 
   <script>
+    const elevator = document.querySelector('.xtx-elevator');
+
     (function () {
-      const elevator = document.querySelector('.xtx-elevator')
       const backTop = document.querySelector('#backTop')
       const entry = document.querySelector('.xtx_entry')
 
       window.addEventListener("scroll", () => {
-        elevator.style.opacity = document.documentElement.scrollTop > entry.offsetTop ? 1 : 0
+        elevator.style.opacity = document.documentElement.scrollTop >= entry.offsetTop ? 1 : 0
       })
 
       backTop.addEventListener('click', () => {
         document.documentElement.scrollTop = 0
         window.scrollTo(0, 0)
       })
-    })()
+    })();
 
-      (function () {
+    (function () {
+      elevator.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'A' || !e.target.dataset.name) return
 
-      })()
+        const active = document.querySelector('.xtx-elevator-list li a.active')
+        if (active) active.classList.remove('active')
+        e.target.classList.add('active')
+
+        document.documentElement.scrollTop = document.querySelector(`.xtx_goods_${e.target.dataset.name}`).offsetTop
+      })
+
+      const goodsNew = document.querySelector(`.xtx_goods_new`)
+      const goodsPopular = document.querySelector(`.xtx_goods_popular`)
+      const goodsBrand = document.querySelector(`.xtx_goods_brand`)
+      const goodsTopic = document.querySelector(`.xtx_goods_topic`)
+
+      const elevatorNew = document.querySelector(`.xtx-elevator-list a[data-name=new]`)
+      const elevatorPopular = document.querySelector(`.xtx-elevator-list a[data-name=popular]`)
+      const elevatorBrand = document.querySelector(`.xtx-elevator-list a[data-name=brand]`)
+      const elevatorTopic = document.querySelector(`.xtx-elevator-list a[data-name=topic]`)
+
+
+      window.addEventListener("scroll", () => {
+        const active = document.querySelector('.xtx-elevator-list li a.active')
+        if (active) active.classList.remove('active')
+        const n = document.documentElement.scrollTop
+
+        if (n >= goodsNew.offsetTop && n < goodsPopular.offsetTop) {
+          elevatorNew.classList.add('active')
+        } else if (n >= goodsPopular.offsetTop && n < goodsBrand.offsetTop) {
+          elevatorPopular.classList.add('active')
+        } else if (n >= goodsBrand.offsetTop && n < goodsTopic.offsetTop) {
+          elevatorBrand.classList.add('active')
+        } else if (n >= goodsTopic.offsetTop) {
+          elevatorTopic.classList.add('active')
+        }
+      })
+
+
+    })();
 
   </script>
 
