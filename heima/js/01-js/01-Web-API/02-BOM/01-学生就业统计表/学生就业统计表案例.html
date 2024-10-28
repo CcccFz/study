@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生就业统计表</title>
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+  <h1>学生就业统计表</h1>
+  <form class="info" autocomplete="off">
+    <input type="text" class="uname" name="uname" placeholder="姓名" />
+    <input type="text" class="age" name="age" placeholder="年龄" />
+    <input type="text" class="salary" name="salary" placeholder="薪资" />
+    <select name="gender" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    <select name="city" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+    </select>
+    <button class="add">
+      <i class="iconfont icon-tianjia"></i>添加
+    </button>
+  </form>
+
+  <div class="title">共有数据<span>0</span>条</div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>录入时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script>
+    const tbody = document.querySelector('tbody')
+    const form = document.querySelector('.info')
+    const totalSpan = document.querySelector('.title span')
+
+    const uname = document.querySelector('form .uname')
+    const age = document.querySelector('form .age')
+    const gender = document.querySelector('form .gender')
+    const salary = document.querySelector('form .salary')
+    const city = document.querySelector('form .city')
+
+    const values = document.querySelectorAll('form [name]')
+
+    let data = []
+    render()
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+
+      for (let i = 0; i < values.length; i++) {
+        if (values[i].value) continue
+        alert('请填写必填项')
+        return
+      }
+
+      data.push({
+        stuId: data.length ? data[data.length - 1].stuId + 1 : 1,
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value,
+        time: new Date().toLocaleString(),
+      })
+
+      save()
+      render()
+      console.log(this)
+      this.reset()
+    })
+
+    tbody.addEventListener('click', e => {
+      if (e.target.tagName !== 'A') return
+      if (!confirm('确定删除数据吗？')) return
+
+      data.splice(e.target.dataset.id, 1)
+      save()
+      render()
+    })
+
+    function render() {
+      data = JSON.parse(localStorage.getItem('data')) || []
+
+      tbody.innerHTML = data.map((item, index) => `
+        <tr>
+          <td>${item.stuId}</td>
+          <td>${item.uname}</td>
+          <td>${item.age}</td>
+          <td>${item.gender}</td>
+          <td>${item.salary}</td>
+          <td>${item.city}</td>
+          <td>${item.time}</td>
+          <td>
+            <a href="javascript:" data-id="${index}">
+            <i class="iconfont icon-shanchu"></i>
+            删除
+          </a>
+          </td>
+        </tr>
+      `).join('')
+
+      totalSpan.innerHTML = data.length
+    }
+
+    function save() {
+      localStorage.setItem('data', JSON.stringify(data))
+    }
+  </script>
+</body>
+
+</html>
