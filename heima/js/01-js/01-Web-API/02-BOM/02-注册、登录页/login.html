@@ -77,7 +77,45 @@
     </div>
   </div>
   <script>
+    const submitBtn = document.querySelector('.dl')
+    const agree = document.querySelector('input[name=agree]')
+    const nav = document.querySelector('.tab-nav')
+    const panes = document.querySelectorAll('.tab-pane')
+    const inputs = document.querySelectorAll('.input input')
 
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName !== 'A') return
+
+      document.querySelector('.tab-nav .active').classList.remove('active')
+      e.target.classList.add('active')
+
+      panes.forEach(function (pane, idx) {
+        if (idx === +e.target.dataset.id) {
+          pane.style.display = 'block'
+        } else {
+          pane.style.display = 'none'
+        }
+      })
+    })
+
+    submitBtn.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      if (!agree.checked) {
+        alert('请同意用户协议')
+        return
+      }
+
+      for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value) {
+          alert('请填写所有必填项')
+          return
+        }
+      }
+
+      localStorage.setItem('xtx-uname', inputs[0].value)
+      location.href = './index.html'
+    })
   </script>
 </body>
 

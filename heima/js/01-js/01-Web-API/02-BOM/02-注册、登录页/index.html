@@ -1219,8 +1219,27 @@
   </div>
 
   <script>
+    const firstNav = document.querySelector('.xtx_navs li:first-child')
+    const secondNav = firstNav.nextElementSibling
 
+    render()
 
+    secondNav.addEventListener('click', function (e) {
+      e.preventDefault()
+      localStorage.removeItem('xtx-uname')
+      render()
+    })
+
+    function render() {
+      const uname = localStorage.getItem('xtx-uname')
+      if (uname) {
+        firstNav.innerHTML = `<a href="#">&nbsp<i class="iconfont icon-user">${uname}</i></a>`
+        secondNav.innerHTML = `<a href="#">退出登录</a>`
+      } else {
+        firstNav.innerHTML = `<a href="./login.html">请先登录</a>`
+        secondNav.innerHTML = `<a href="./register.html">免费注册</a>`
+      }
+    }
   </script>
 </body>
 

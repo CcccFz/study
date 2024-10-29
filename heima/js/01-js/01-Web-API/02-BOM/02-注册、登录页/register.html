@@ -239,17 +239,20 @@
 
     const submitBtn = document.querySelector('form .submit')
     submitBtn.addEventListener('click', function (e) {
+      e.preventDefault()
+
       if (!agreeI.classList.contains('icon-queren2')) {
         alert('请同意用户服务协议')
-        e.preventDefault()
         return
       }
 
-      if (!verifyInput(/^[a-zA-Z0-9-_]{6,10}$/, '用户名只能包含字母、数字、下划线、减号，且长度为6-10位', usernameInput)()) e.preventDefault()
-      if (!verifyInput(/^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/, '请输入正确的手机号码', phoneInput)()) e.preventDefault()
-      if (!verifyInput(/^\d{6}$/, '请输入正确的验证码', codeInput)()) e.preventDefault()
-      if (!verifyInput(/^[a-zA-Z0-9-_]{6,20}$/, '密码只能包含字母、数字、下划线、减号，且长度为6-20位', passwordInput)()) e.preventDefault()
-      if (!verifyInputSame(confirmInput)()) e.preventDefault()
+      if (!(verifyInput(/^[a-zA-Z0-9-_]{6,10}$/, '用户名只能包含字母、数字、下划线、减号，且长度为6-10位', usernameInput)() &
+        verifyInput(/^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/, '请输入正确的手机号码', phoneInput)() &
+        verifyInput(/^\d{6}$/, '请输入正确的验证码', codeInput)() &
+        verifyInput(/^[a-zA-Z0-9-_]{6,20}$/, '密码只能包含字母、数字、下划线、减号，且长度为6-20位', passwordInput)() &
+        verifyInputSame(confirmInput)())) return
+
+      location.href = './login.html'
     })
 
     function verifyInput(reg, msg, ele = null) {
