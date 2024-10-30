@@ -149,6 +149,29 @@
     ]
 
 
+    const listDiv = document.querySelector('.list')
+    const amountSpan = document.querySelector('.amount')
+
+    render()
+
+    function render() {
+      listDiv.innerHTML = goodsList.map(item => {
+        const { name, price, picture, count, spec, gift } = item
+        const total = (price * count * 100 / 100).toFixed(2)
+        const specStr = Object.values(spec).join('/')
+        const gifts = gift ? gift.split(',').map(item => `<span class="tag">【赠品】${item}</span>`).join('') : ''
+
+        return `<div class="item">
+          <img src="${picture}" alt="">
+          <p class="name">${name} ${gifts}</p>
+          <p class="spec">${specStr}</p>
+          <p class="price">${price.toFixed(2)}</p>
+          <p class="count">x${count}</p>
+          <p class="sub-total">${total}</p>
+        </div>`
+      }).join('')
+      amountSpan.innerText = goodsList.reduce((prev, cur) => prev + cur.price * cur.count * 100 / 100, 0).toFixed(2)
+    }
   </script>
 </body>
 
