@@ -70,7 +70,10 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   <script>
+    const video = document.querySelector('.video video')
 
+    video.addEventListener('loadeddata', () => video.currentTime = localStorage.getItem('videoCurrentTime') || 0)
+    video.addEventListener('timeupdate', _.throttle(() => localStorage.setItem('videoCurrentTime', video.currentTime), 2000))
   </script>
 </body>
 

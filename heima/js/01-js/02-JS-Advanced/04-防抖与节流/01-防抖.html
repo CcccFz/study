@@ -20,23 +20,25 @@
 
 <body>
   <div class="box"></div>
+  <script src="./lodash.min.js"></script>
   <script>
-    fn()
-    function fn() {
-      try {
-        const a = 1
-        a = 2
-      } catch (err) {
-        // console.log(err)
-        throw new Error(err)
-        return
-      } finally {
-        console.log('111')
+    const box = document.querySelector('.box')
 
+    let cnt = 0
+
+    // box.addEventListener('mousemove', _.debounce(() => box.textContent = ++cnt , 500))
+    box.addEventListener('mousemove', debounce(() => box.textContent = ++cnt, 500))
+
+    function debounce(fn, ms) {
+      let timer = null
+      return () => {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn()
+          clearTimeout(timer)
+        }, ms)
       }
-      console.log('222')
     }
-
   </script>
 </body>
 
