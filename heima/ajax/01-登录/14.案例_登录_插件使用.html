@@ -67,23 +67,57 @@
       <form>
         <div class="mb-3">
           <label for="username" class="form-label">账号名</label>
-          <input type="text" class="form-control username">
+          <input type="text" class="form-control username" name="username">
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">密码</label>
-          <input type="password" class="form-control password">
+          <input type="password" class="form-control password" name="password">
         </div>
         <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
       </form>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./lib/form-serialize.js"></script>
   <script>
     // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
     // 目标2：使用提示框，反馈提示消息
     // 目标3：使用form-serialize插件，收集用户名和密码
 
-    
+    document.querySelector('.btn-login').addEventListener('click', () => {
+      const form = document.querySelector('.form_wrap form')
+      const data = serialize(form, { hash: true, empty: true })
+
+      if (data.username.length < 6) {
+        alertFn('账号名长度必须大于等于6位', false)
+        return
+      }
+      if (data.password.length < 6) {
+        alertFn('密码长度必须大于等于6位', false)
+        return
+      }
+
+      axios({
+        url: 'http://hmajax.itheima.net/api/login',
+        method: 'POST',
+        data
+      }).then(res => {
+        alertFn(res.data.message)
+      }).catch(err => {
+        alertFn(err.message, false)
+      })
+    })
+
+    function alertFn(msg, isSuccess = true) {
+      const alertDiv = document.querySelector('.alert')
+      alertDiv.innerText = msg
+      alertDiv.className = `alert ${isSuccess ? 'alert-success' : 'alert-danger'} show`
+
+      setTimeout(() => {
+        alertDiv.classList.remove('show')
+      }, 2000)
+    }
+
   </script>
 </body>
 

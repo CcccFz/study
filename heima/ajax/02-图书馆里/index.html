@@ -35,16 +35,6 @@
         </tr>
       </thead>
       <tbody class="list">
-        <tr>
-          <td>1</td>
-          <td>JavaScript程序设计</td>
-          <td>马特·弗里斯比</td>
-          <td>人民邮电出版社</td>
-          <td>
-            <span class="del">删除</span>
-            <span class="edit">编辑</span>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -120,6 +110,83 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
   <!-- 核心逻辑 -->
   <script src="./js/index.js"></script>
+  <script>
+    const creator = '小刘'
+    const addModal = new bootstrap.Modal(document.querySelector('.add-modal'))
+    const editModal = new bootstrap.Modal(document.querySelector('.edit-modal'))
+
+    document.querySelector('.add-modal .add-btn').addEventListener('click', function (e) {
+      const form = document.querySelector('.add-form')
+      const data = serialize(form, { hash: true, empty: true })
+
+      axios({
+        url: 'http://hmajax.itheima.net/api/books',
+        method: 'POST',
+        data: { ...data, creator }
+      }).then(res => {
+        render()
+        addModal.hide()
+        form.reset()
+      })
+    })
+
+    document.querySelector('.edit-modal .edit-btn').addEventListener('click', function (e) {
+      const form = document.querySelector('.edit-form')
+      const data = serialize(form, { hash: true, empty: true })
+
+      axios({
+        url: `http://hmajax.itheima.net/api/books/${data.id}`,
+        method: 'PUT',
+        data: { ...data, creator }
+      }).then(res => {
+        render()
+        editModal.hide()
+        form.reset()
+      })
+    })
+
+    document.querySelector('.list').addEventListener('click', function (e) {
+      if (e.target.classList.contains('del')) {
+        axios({
+          url: `http://hmajax.itheima.net/api/books/${e.target.parentNode.dataset.id}`,
+          method: 'DELETE',
+        }).then(res => {
+          render()
+        })
+      }
+
+      if (e.target.classList.contains('edit')) {
+        editModal.show()
+        axios({
+          url: `http://hmajax.itheima.net/api/books/${e.target.parentNode.dataset.id}`,
+        }).then(res => {
+          for (let k in res.data.data) {
+            document.querySelector(`.edit-form .${k}`).value = res.data.data[k]
+          }
+        })
+      }
+    })
+
+    render()
+
+    function render() {
+      axios({
+        url: 'http://hmajax.itheima.net/api/books',
+        params: { creator }
+      }).then(res => {
+        document.querySelector('.list').innerHTML = res.data.data.map(item => `<tr>
+          <td>${item.id}</td>
+          <td>${item.bookname}</td>
+          <td>${item.author}</td>
+          <td>${item.publisher}</td>
+          <td data-id="${item.id}">
+            <span class="del">删除</span>
+            <span class="edit">编辑</span>
+          </td>
+        </tr>`).join('')
+      })
+    }
+  </script>
 </body>
 
 </html>

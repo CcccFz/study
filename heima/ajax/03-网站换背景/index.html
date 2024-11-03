@@ -20,7 +20,8 @@
           <li><a href="http://yun.itheima.com/?webzly" target="_blank" rel="nofollow">免费教程</a></li>
           <li><a href="http://resource.ityxb.com/booklist/?webzly" target="_blank" rel="nofollow">原创书籍</a></li>
           <li><a href="http://www.itheima.com/teacher.html?webzly#ajavaee" target="_blank" rel="nofollow">教研团队</a></li>
-          <li><a href="http://www.itheima.com/special/hmschool/index.shtml?webzly" target="_blank" rel="nofollow">校区汇总</a></li>
+          <li><a href="http://www.itheima.com/special/hmschool/index.shtml?webzly" target="_blank"
+              rel="nofollow">校区汇总</a></li>
           <li><a href="http://www.itheima.com/flow/flow.html?webzly" target="_blank" rel="nofollow">报名流程</a></li>
           <li><a href="https://pip.itcast.cn?hmgw$webzly" target="_blank" rel="nofollow">项目信息站</a></li>
           <li><a href="http://bbs.itheima.com/forum.php?webzly" target="_blank" rel="nofollow">技术社区</a></li>
@@ -42,6 +43,28 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- 核心代码 -->
   <script src="./js/index.js"></script>
+  <script>
+    render()
+
+    document.querySelector('.bg-ipt').addEventListener('change', function (e) {
+      const fd = new FormData();
+      fd.append('img', e.target.files[0]);
+
+      axios({
+        url: 'http://hmajax.itheima.net/api/uploadimg',
+        method: 'POST',
+        data: fd,
+      }).then(res => {
+        localStorage.setItem('hmajaxBgImg', res.data.data.url)
+        render()
+      })
+    })
+
+    function render() {
+      const bgImg = localStorage.getItem('hmajaxBgImg')
+      bgImg && (document.body.style.backgroundImage = `url(${bgImg})`)
+    }
+  </script>
 </body>
 
 </html>
