@@ -33,7 +33,7 @@ function render(city) {
     params: {city}
   }).then(res => {
     const data = res.data
-    document.querySelector('.title').innerHTML = `
+    document.querySelector('.top-box .title').innerHTML = `
       <span class="dateShort">${data.dateShort}</span>
       <span class="calendar">农历&nbsp;
       <span class="dateLunar">${data.dateLunar}</span>
@@ -113,97 +113,3 @@ function render(city) {
   })
 }
 
-oo = {
-  "date": "2024-11-06",
-  "area": "北京市",
-  "dateShort": "11月06日",
-  "dateLunar": "十月初六",
-  "temperature": "11",
-  "weather": "多云",
-  "weatherImg": "https://hmajax.itheima.net/weather/duoyunline.png",
-  "windPower": "2级",
-  "windDirection": "东风",
-  "psPm25Level": "优",
-  "psPm25": "47",
-  "todayWeather": {
-      "humidity": "41",
-      "sunriseTime": "06:49",
-      "sunsetTime": "17:07",
-      "ultraviolet": "",
-      "weather": "多云",
-      "temDay": "13",
-      "temNight": "2"
-  },
-  "dayForecast": [
-      {
-          "date": "11月06日",
-          "temDay": "13",
-          "weather": "多云",
-          "temNight": "2",
-          "windPower": "2级",
-          "dateFormat": "今天",
-          "weatherImg": "https://hmajax.itheima.net/weather/duoyun.png",
-          "windDirection": "东北风"
-      },
-      {
-          "date": "11月07日",
-          "temDay": "14",
-          "weather": "晴",
-          "temNight": "4",
-          "windPower": "2级",
-          "dateFormat": "明天",
-          "weatherImg": "https://hmajax.itheima.net/weather/qing.png",
-          "windDirection": "东北风"
-      },
-      {
-          "date": "11月08日",
-          "temDay": "14",
-          "weather": "阴",
-          "temNight": "5",
-          "windPower": "2级",
-          "dateFormat": "后天",
-          "weatherImg": "https://hmajax.itheima.net/weather/yin.png",
-          "windDirection": "东北风"
-      },
-      {
-          "date": "11月09日",
-          "temDay": "15",
-          "weather": "晴",
-          "temNight": "6",
-          "windPower": "2级",
-          "dateFormat": "周六",
-          "weatherImg": "https://hmajax.itheima.net/weather/qing.png",
-          "windDirection": "南风"
-      },
-      {
-          "date": "11月10日",
-          "temDay": "15",
-          "weather": "阴",
-          "temNight": "5",
-          "windPower": "2级",
-          "dateFormat": "周日",
-          "weatherImg": "https://hmajax.itheima.net/weather/yin.png",
-          "windDirection": "东北风"
-      },
-      {
-          "date": "11月11日",
-          "temDay": "15",
-          "weather": "阴",
-          "temNight": "7",
-          "windPower": "2级",
-          "dateFormat": "周一",
-          "weatherImg": "https://hmajax.itheima.net/weather/yin.png",
-          "windDirection": "南风"
-      },
-      {
-          "date": "11月12日",
-          "temDay": "12",
-          "weather": "阴",
-          "temNight": "7",
-          "windPower": "2级",
-          "dateFormat": "周二",
-          "weatherImg": "https://hmajax.itheima.net/weather/yin.png",
-          "windDirection": "东南风"
-      }
-  ]
-}
