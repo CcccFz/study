@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <!-- <div class="container">
     <h4 class="stu-title">学习反馈</h4>
     <img class="bg" src="./img/head.png" alt="">
     <div class="item-wrap">
@@ -43,7 +43,7 @@
         </div>
         <div class="area-box">
           <span class="title">您的称呼</span>
-          <input type="text" name="nickname" class="nickname"  value="播仔">
+          <input type="text" name="nickname" class="nickname" value="播仔">
         </div>
         <div class="area-box">
           <span class="title">宝贵建议</span>
@@ -60,7 +60,37 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
   <script src="./js/form-serialize.js"></script>
   <!-- 核心代码 -->
-  <script src="./js/index.js"></script>
+  <script src="./js/index.js"></script> -->
 </body>
+
+<script>
+  console.log(1, new Date())
+
+  batchGetPoints().then(() => {
+    console.log(2, new Date())
+  })
+
+  console.log(3, new Date())
+
+  async function batchGetPoints() {
+    for (let i = 0; i < 10; i++) {
+      try {
+        let res = await getPointForAddress();
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  function getPointForAddress() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        console.log(111)
+        resolve(222)
+      }, 1000)
+    })
+  }
+</script>
 
 </html>
