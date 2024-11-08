@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <!-- <div class="container">
+  <div class="container">
     <h4 class="stu-title">学习反馈</h4>
     <img class="bg" src="./img/head.png" alt="">
     <div class="item-wrap">
@@ -60,37 +60,48 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
   <script src="./js/form-serialize.js"></script>
   <!-- 核心代码 -->
-  <script src="./js/index.js"></script> -->
+  <script src="./js/index.js"></script>
 </body>
 
 <script>
-  console.log(1, new Date())
-
-  batchGetPoints().then(() => {
-    console.log(2, new Date())
+  axios({ url: 'http://hmajax.itheima.net/api/province' }).then(res => {
+    const provinces = res.data.list
+    document.querySelector('.province').innerHTML = '<option value="">省份</option>' +
+      provinces.map(province => `<option value="${province}">${province}</option>`).join('')
   })
 
-  console.log(3, new Date())
+  document.querySelector('.province').addEventListener('change', async function (e) {
+    const pname = this.value
+    const res = await axios({ url: 'http://hmajax.itheima.net/api/city', params: { pname } })
+    const cities = res.data.list
+    document.querySelector('.city').innerHTML = '<option value="">城市</option>' +
+      cities.map(city => `<option value="${city}">${city}</option>`).join('')
+    document.querySelector('.area').innerHTML = '<option value="">地区</option>'
+  })
 
-  async function batchGetPoints() {
-    for (let i = 0; i < 10; i++) {
-      try {
-        let res = await getPointForAddress();
-        console.log(res)
-      } catch (err) {
-        console.log(err)
-      }
+  document.querySelector('.city').addEventListener('change', async function (e) {
+    const pname = document.querySelector('.province').value
+    const cname = this.value
+    const res = await axios({ url: 'http://hmajax.itheima.net/api/area', params: { pname, cname } })
+    const areas = res.data.list
+    document.querySelector('.area').innerHTML = '<option value="">地区</option>' +
+      areas.map(area => `<option value="${area}">${area}</option>`).join('')
+  })
+
+  document.querySelector('.submit').addEventListener('click', async function (e) {
+    const form = document.querySelector('.info-form')
+    const data = serialize(form, { hash: true, empty: true })
+    try {
+      const res = await axios({
+        url: 'http://hmajax.itheima.net/api/feedback',
+        method: 'POST',
+        data,
+      })
+      alert(res.data.message)
+    } catch (err) {
+      alert(err.response.data.message)
     }
-  }
-
-  function getPointForAddress() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        console.log(111)
-        resolve(222)
-      }, 1000)
-    })
-  }
+  })
 </script>
 
 </html>
