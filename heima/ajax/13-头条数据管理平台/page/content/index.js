@@ -3,6 +3,7 @@
  *  1.1 准备查询参数对象
  *  1.2 获取文章列表数据
  *  1.3 展示到指定的标签结构中
+ *  GET /v1_0/mp/articles   status(1, 2)  channel_id page per_page
  */
 
 /**
@@ -27,7 +28,107 @@
  *  4.3 调用删除接口，传递文章 id 到服务器
  *  4.4 重新获取文章列表，并覆盖展示
  *  4.5 删除最后一页的最后一条，需要自动向前翻页
+ *  DELETE /v1_0/mp/articles/:id
  */
 
 // 点击编辑时，获取文章 id，跳转到发布文章页面传递文章 id 过去
 
+var totalCount
+const queryParams = {
+  status: '',
+  channel_id: '',
+  page: 1,
+  per_page: 2
+}
+
+getChannels()
+getArticles()
+
+document.querySelector('.sel-form').addEventListener('change', e => {
+  if (e.target.tagName === 'INPUT' && e.target.parentNode.classList.contains('form-check')) {
+    queryParams.status = e.target.value
+  }
+  if (e.target.tagName === 'SELECT' && e.target.classList.contains('form-select')) {
+    queryParams.channel_id = e.target.value
+  }
+})
+
+document.querySelector('.sel-btn').addEventListener('click', e => {
+  queryParams.page = 1
+  getArticles()
+})
+
+document.querySelector('.next').addEventListener('click', e => {
+  if (queryParams.page >= Math.ceil(totalCount / queryParams.per_page) ) return
+  queryParams.page++
+  getArticles()
+})
+
+document.querySelector('.last').addEventListener('click', e => {
+  if (queryParams.page <= 1) return
+  queryParams.page--
+  getArticles()
+})
+
+document.querySelector('.art-list').addEventListener('click', async e => {
+  if (e.target.classList.contains('del')) {
+    if (!confirm('确定要删除吗？')) return
+    const id = e.target.parentNode.parentNode.dataset.id
+    await axios({
+      url: `/v1_0/mp/articles/${id}`,
+      method: 'DELETE'
+    })
+    if (document.querySelector('.art-list').children.length == 1 && queryParams.page > 1) {
+      queryParams.page--
+    }
+    getArticles()
+  }
+
+  if (e.target.classList.contains('edit')) {
+    const id = e.target.parentNode.parentNode.dataset.id
+    location.href = `../publish/index.html?id=${id}`
+  }
+})
+
+async function getChannels() {
+  const res = await axios({url: '/v1_0/channels'})
+  document.querySelector('.form-select').innerHTML = '<option value="" selected="">请选择文章频道</option>' +
+    res.channels.map(channel => `<option value="${channel.id}">${channel.name}</option>`).join('')
+}
+
+async function getArticles() {
+  const res = await axios({
+    url: '/v1_0/mp/articles',
+    params: queryParams,
+  })
+  document.querySelector('.art-list').innerHTML = res.results.map(article => `
+    <tr data-id="${article.id}">
+      <td>
+        <img src="${article.cover?.type ? article.cover.images[0] : 'https://img2.baidu.com/it/u=2640406343,1419332367&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=708&amp;h=500'}" alt="">
+      </td>
+      <td>${article.title}</td>
+      <td>
+        ${article.status === 1 ? '<span class="badge text-bg-primary">待审核</span>' : '<span class="badge text-bg-success">审核通过</span>'}
+      </td>
+      <td>
+        <span>${article.pubdate}</span>
+      </td>
+      <td>
+        <span>${article.read_count}</span>
+      </td>
+      <td>
+        <span>${article.comment_count}</span>
+      </td>
+      <td>
+        <span>${article.like_count}</span>
+      </td>
+      <td>
+        <i class="bi bi-pencil-square edit"></i>
+        <i class="bi bi-trash3 del"></i>
+      </td>
+    </tr>
+  `)
+  totalCount = res.total_count
+  document.querySelector('.total-count').innerText = `共${totalCount}条`
+  document.querySelector('.page-now').innerText = `第${queryParams.page}页`
+}

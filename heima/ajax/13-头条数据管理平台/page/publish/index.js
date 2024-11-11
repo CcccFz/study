@@ -40,6 +40,38 @@
 
 getChannels()
 
+;(function () {
+  if (!location.search) return
+  document.querySelector('.title span').innerText = '编辑文章'
+  document.querySelector('.send').innerText = '保存'
+  const params = new URLSearchParams(location.search)
+  params.forEach(async (val, key) => {
+    if (key !== 'id') return
+    const id = val
+    const res = await axios({url: `/v1_0/mp/articles/${id}`})
+    const data = {
+      id,
+      title: res.title,
+      channel_id: res.channel_id,
+      content: res.content,
+      rounded: res.cover.images[0],
+    }
+    Object.keys(data).forEach(key => {
+      if (key === 'rounded') {
+        if (data[key]) {
+          document.querySelector('.rounded').src = data[key]
+          document.querySelector('.rounded').classList.add('show')
+          document.querySelector('.place').classList.add('hide')
+        }
+      } else if (key === 'content') {
+        editor.setHtml(data[key])
+      } else {
+        document.querySelector(`.art-form [name=${key}]`).value = data[key]
+      }
+    })
+  })
+}());
+
 async function getChannels() {
   const res = await axios({url: '/v1_0/channels'})
   document.querySelector('.form-select').innerHTML = '<option value="" selected="">请选择文章频道</option>' +
@@ -66,8 +98,28 @@ document.querySelector('.rounded').addEventListener('click', () => {
 })
 
 document.querySelector('.send').addEventListener('click', async () => {
-  const data = serialize(document.querySelector('.art-form'), {hash: true, empty: true})
-  delete data.id
+  const form = document.querySelector('.art-form')
+  const data = serialize(form, {hash: true, empty: true})
   data.cover = {type: 1, images: [document.querySelector('.rounded').src]}
+  if (location.search) {
+    await axios({
+      url: `/v1_0/mp/articles/${data.id}`,
+      method: 'PUT',
+      data
+    })
+  } else {
+    // delete data.id
+    await axios({
+      url: '/v1_0/mp/articles',
+      method: 'POST',
+      data
+    })
+  }
   
+  myAlert(true, '发布成功')
+  form.reset()
+  document.querySelector('.rounded').src = ''
+  document.querySelector('.place').classList.remove('hide')
+  document.querySelector('.rounded').classList.remove('show')
+  editor.setHtml('')
 })

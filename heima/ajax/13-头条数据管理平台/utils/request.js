@@ -10,7 +10,7 @@ axios.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
   token && (config.headers.Authorization = `Bearer ${token}`)
   return config
-}, err =>{
+}, err => {
   return Promise.reject(err)
 })
 
