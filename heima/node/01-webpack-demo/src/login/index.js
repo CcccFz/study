@@ -14,6 +14,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import './index.less'
 
+import imgObj from './assets/logo.png'
+const theImg = document.createElement('img')
+theImg.src = imgObj
+document.querySelector('.login-wrap').appendChild(theImg)
+
+
 document.querySelector('.login-form .btn').addEventListener('click', () => {
   const form = document.querySelector('.login-form')
   const data = serialize(form, { hash: true, empty: true })
