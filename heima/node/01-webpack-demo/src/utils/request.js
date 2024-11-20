@@ -1,8 +1,8 @@
 // axios 公共配置
 // 基地址
 
-const loginPath = '../login/index.html'
-const homePath = '../content/index.html'
+import axios from 'axios'
+import { myAlert } from './alert'
 
 axios.defaults.baseURL = 'http://geek.itheima.net'
 
@@ -19,9 +19,11 @@ axios.interceptors.response.use(res => {
 }, err => {
   if (err?.response?.status === 401) {
     localStorage.clear()
-    location.href = loginPath
+    location.href = '../login/index.html'
   }
 
   myAlert(false, err.response.data.message)
   return Promise.reject(err)
 })
+
+export default axios

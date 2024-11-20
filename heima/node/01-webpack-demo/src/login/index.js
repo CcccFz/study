@@ -6,19 +6,29 @@
  * 1.4 使用 Bootstrap 的 Alert 警告框反馈结果给用户
  */
 
+if (process.env.NODE_ENV === 'production_1') {
+  console.log = function () {}
+}
+
+
 import { checkCode, checkPhone } from '@/utils/check'
 console.log(checkCode('12345'));
 console.log(checkPhone('13708045045'));
 
+
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
 import './index.less'
+import './index.css'
 
 import imgObj from './assets/logo.png'
 const theImg = document.createElement('img')
 theImg.src = imgObj
 document.querySelector('.login-wrap').appendChild(theImg)
 
+
+import axios from '../utils/request'
+import serialize from 'form-serialize'
+import { myAlert } from '../utils/alert'
 
 document.querySelector('.login-form .btn').addEventListener('click', () => {
   const form = document.querySelector('.login-form')
@@ -30,6 +40,6 @@ document.querySelector('.login-form .btn').addEventListener('click', () => {
   }).then(res => {
     localStorage.setItem('token', res.token)
     myAlert(true, '登录成功')
-    location.href = homePath
-  })
+    location.href = '../content/index.html'
+  }).catch(err => {})
 })

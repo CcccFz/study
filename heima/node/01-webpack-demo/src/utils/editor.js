@@ -1,7 +1,9 @@
 // 富文本编辑器
 // 创建编辑器函数，创建工具栏函数
 
-const { createEditor, createToolbar } = window.wangEditor
+const wangEditor = require('@wangeditor/editor')
+
+const { createEditor, createToolbar } = wangEditor
 
 const editorConfig = {
     placeholder: '请输入文章内容...',
@@ -25,3 +27,5 @@ const toolbar = createToolbar({
     config: toolbarConfig,
     mode: 'default', // or 'simple'
 })
+
+export default editor

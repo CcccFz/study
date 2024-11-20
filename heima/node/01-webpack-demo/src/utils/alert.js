@@ -5,7 +5,8 @@
  * @param {*} isSuccess 成功 true，失败 false
  * @param {*} msg 提示消息
  */
-function myAlert(isSuccess, msg) {
+
+export function myAlert(isSuccess, msg) {
   const myAlert = document.querySelector('.alert')
   myAlert.classList.add(isSuccess ? 'alert-success' : 'alert-danger')
   myAlert.innerHTML = msg

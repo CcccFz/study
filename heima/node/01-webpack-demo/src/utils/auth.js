@@ -23,14 +23,16 @@
 //   Authorization: `Bearer ${token}`
 // }
 
+import axios from './request'
+
 const token = localStorage.getItem('token')
 if (!token) {
-  location.href = loginPath
+  location.href = '../login/index.html'
 }
 
 document.querySelector('.quit').addEventListener('click', () => {
   localStorage.clear()
-  location.href = loginPath
+  location.href = '../login/index.html'
 })
 
 axios({

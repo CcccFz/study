@@ -38,6 +38,14 @@
  *  5.3 基于 Alert 反馈结果消息给用户
  */
 
+import './index.css'
+import '@/utils/auth'
+import axios from '@/utils/request'
+import serialize from 'form-serialize'
+import editor from '@/utils/editor'
+import { myAlert } from '@/utils/alert'
+
+
 getChannels()
 
 ;(function () {

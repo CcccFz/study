@@ -33,6 +33,8 @@
 
 // 点击编辑时，获取文章 id，跳转到发布文章页面传递文章 id 过去
 
+import '../utils/auth'
+
 var totalCount
 const queryParams = {
   status: '',
@@ -43,6 +45,10 @@ const queryParams = {
 
 getChannels()
 getArticles()
+
+
+import './index.css'
+import axios from '@/utils/request'
 
 document.querySelector('.sel-form').addEventListener('change', e => {
   if (e.target.tagName === 'INPUT' && e.target.parentNode.classList.contains('form-check')) {
