@@ -1,10 +1,11 @@
 import './App.scss'
 import avatar from './images/bozai.png'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 /**
  * 评论列表的渲染和操作
@@ -79,8 +80,60 @@ const tabs = [
   { type: 'time', text: '最新' },
 ]
 
+function useGetComments() {
+  const [comments, setComments] = useState([])
+
+  useEffect(() => {
+    async function getComments() {
+      const res = await axios.get('http://localhost:3006/list')
+      setComments(res.data)
+    }
+    getComments()
+  }, [])
+
+  return [comments, setComments]
+}
+
+function Item({ comment, handleDeleteComment }) {
+  return (
+    <div className="reply-item">
+      {/* 头像 */}
+      <div className="root-reply-avatar">
+        <div className="bili-avatar">
+          <img
+            className="bili-avatar-img"
+            alt=""
+            src={comment.user.avatar}
+          />
+        </div>
+      </div>
+
+      <div className="content-wrap">
+        {/* 用户名 */}
+        <div className="user-info">
+          <div className="user-name">{comment.user.uname}</div>
+        </div>
+        {/* 评论内容 */}
+        <div className="root-reply">
+          <span className="reply-content">{comment.content}</span>
+          <div className="reply-info">
+            {/* 评论时间 */}
+            <span className="reply-time">{comment.ctime}</span>
+            {/* 评论数量 */}
+            <span className="reply-time">点赞数:{comment.like}</span>
+            {user.uid === comment.user.uid && <span className="delete-btn" onClick={() => handleDeleteComment(comment.rpid)}>
+              删除
+            </span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const App = () => {
-  const [comments, setComments] = useState(defaultList)
+  const [comments, setComments] = useGetComments()
   const [type, setType] = useState('hot')
   const [content, setContent] = useState('')
   const inputRef = useRef(null)
@@ -168,42 +221,7 @@ const App = () => {
         {/* 评论列表 */}
         <div className="reply-list">
           {/* 评论项 */}
-          {sortedComments.map(comment => (
-            <div className="reply-item" key={comment.rpid}>
-              {/* 头像 */}
-              <div className="root-reply-avatar">
-                <div className="bili-avatar">
-                  <img
-                    className="bili-avatar-img"
-                    alt=""
-                    src={comment.user.avatar}
-                  />
-                </div>
-              </div>
-
-              <div className="content-wrap">
-                {/* 用户名 */}
-                <div className="user-info">
-                  <div className="user-name">{comment.user.uname}</div>
-                </div>
-                {/* 评论内容 */}
-                <div className="root-reply">
-                  <span className="reply-content">{comment.content}</span>
-                  <div className="reply-info">
-                    {/* 评论时间 */}
-                    <span className="reply-time">{comment.ctime}</span>
-                    {/* 评论数量 */}
-                    <span className="reply-time">点赞数:{comment.like}</span>
-                    {user.uid === comment.user.uid && <span className="delete-btn" onClick={() => handleDeleteComment(comment.rpid)}>
-                      删除
-                    </span>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-          
+          {sortedComments.map(comment => <Item key={comment.rpid} comment={comment} handleDeleteComment={handleDeleteComment} />)}
         </div>
       </div>
     </div>
