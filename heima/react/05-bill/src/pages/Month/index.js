@@ -10,7 +10,7 @@ import DailyBill from "./components/DailyBill"
 const Month = () => {
   const { bills } = useSelector(state => state.bill)
   const [ dateVisible, setDateVisible ] = useState(false)
-  const [ curDate, setCurDate ] = useState(dayjs(new Date('2023-03')).format('YYYY-MM'))
+  const [ curDate, setCurDate ] = useState(dayjs(new Date()).format('YYYY-MM'))
 
   const biilsByMonth = useMemo(() => _.groupBy(bills, bill => dayjs(bill.date).format('YYYY-MM')), [bills])
   const biilsByDay = useMemo(() => _.groupBy(biilsByMonth[curDate], bill => dayjs(bill.date).format('MM-DD')), [biilsByMonth, curDate])

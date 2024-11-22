@@ -10,10 +10,10 @@ const DailyBill = ({ date, bills, calcAmount }) => {
 
   return (
     <div className={classNames('dailyBill')}>
-      <div className="header">
+      <div className="header" onClick={() => setVisible(!visible)}>
         <div className="dateIcon">
           <span className="date">{date.replace('-', '月')}日</span>
-          <span className={classNames('arrow', {expand: visible})} onClick={() => setVisible(!visible)}></span>
+          <span className={classNames('arrow', {expand: visible})}></span>
         </div>
         <div className="oneLineOverview">
           <div className="pay">

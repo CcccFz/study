@@ -4,9 +4,38 @@ import './index.scss'
 import classNames from 'classnames'
 import { billListData } from '@/constants'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from'react-redux'
+import { addBill } from '@/store/modules/bill'
+import { useState } from'react'
+import dayjs from 'dayjs'
 
 const New = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [visible, setVisible] = useState(false)
+  const [curType, setCurType] = useState('pay')
+  const [curUseFor, setCurUseFor ] = useState('')
+  const [curMoney, setCurMoney] = useState('')
+  const nowDate = dayjs(new Date()).format('YYYY-MM-DD')
+  const [curDate, setcurDate] = useState(nowDate)
+
+  const handleDateConfirm = date => {
+    setcurDate(dayjs(date).format('YYYY-MM-DD'))
+    setVisible(false)
+  }
+
+  const handleSave = () => {
+    if (!curMoney || !curUseFor) return
+
+    dispatch(addBill({
+      type: curType,
+      useFor: curUseFor,
+      date: curDate,
+      money: curType === 'pay' ? -curMoney : +curMoney
+    }))
+    navigate('/')
+  }
+
   return (
     <div className="keepAccounts">
       <NavBar className="nav" onBack={() => navigate(-1)}>
@@ -17,13 +46,15 @@ const New = () => {
         <div className="kaType">
           <Button
             shape="rounded"
-            className={classNames('selected')}
+            className={classNames({selected: curType === 'pay'})}
+            onClick={() => setCurType('pay')}
           >
             支出
           </Button>
           <Button
-            className={classNames('')}
+            className={classNames({selected: curType === 'income'})}
             shape="rounded"
+            onClick={() => setCurType('income')}
           >
             收入
           </Button>
@@ -31,13 +62,16 @@ const New = () => {
 
         <div className="kaFormWrapper">
           <div className="kaForm">
-            <div className="date">
+            <div className="date" onClick={() => setVisible(true)} >
               <Icon type="calendar" className="icon" />
-              <span className="text">{'今天'}</span>
+              <span className="text">{curDate === nowDate ? '今天' : curDate}</span>
               <DatePicker
                 className="kaDate"
                 title="记账日期"
                 max={new Date()}
+                visible={visible}
+                onCancel={() => setVisible(false)}
+                onConfirm={handleDateConfirm}
               />
             </div>
             <div className="kaInput">
@@ -45,6 +79,8 @@ const New = () => {
                 className="input"
                 placeholder="0.00"
                 type="number"
+                value={curMoney}
+                onChange={money => setCurMoney(money)}
               />
               <span className="iconYuan">¥</span>
             </div>
@@ -53,7 +89,7 @@ const New = () => {
       </div>
 
       <div className="kaTypeList">
-        {billListData['pay'].map(item => {
+        {billListData[curType].map(item => {
           return (
             <div className="kaType" key={item.type}>
               <div className="title">{item.name}</div>
@@ -63,10 +99,10 @@ const New = () => {
                     <div
                       className={classNames(
                         'item',
-                        ''
+                        {selected: curUseFor === item.type}
                       )}
                       key={item.type}
-
+                      onClick={() => setCurUseFor(item.type)}
                     >
                       <div className="icon">
                         <Icon type={item.type} />
@@ -82,7 +118,7 @@ const New = () => {
       </div>
 
       <div className="btns">
-        <Button className="btn save">
+        <Button className="btn save" onClick={handleSave}>
           保 存
         </Button>
       </div>
