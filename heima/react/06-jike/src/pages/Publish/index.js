@@ -11,13 +11,13 @@ import {
   message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import './index.scss'
 
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useState } from 'react'
-import { publishArticleAPI } from '@/apis/article'
+import { useEffect, useState } from 'react'
+import { getArticleAPI, publishArticleAPI, updateArticleAPI } from '@/apis/article'
 import { useChannel } from '@/hooks/useChannel'
 
 const { Option } = Select
@@ -27,18 +27,43 @@ const Publish = () => {
   const [imageType, setImageType] = useState(0)
   const [images, setImages] = useState([])
 
+  const [searchParams] = useSearchParams()
+  const articleId = searchParams.get('id')
+  const [form] = Form.useForm()
+
+  useEffect(() => {
+    const getArticle = async () => {
+      const res = await getArticleAPI(articleId)
+      const { cover } = res.data
+      form.setFieldsValue({
+        ...res.data,
+        type: cover.type
+      })
+      setImageType(cover.type)
+      setImages(cover.images.map(url => ({ url })))
+    }
+    if (!articleId) return
+    getArticle()
+  }, [articleId, form])
+
   const onFinish = async (data) => {
     if (imageType !== images.length) return message.warning('封面类型与图片数量不匹配')
-    await publishArticleAPI({
+    const reqData = {
       title: data.title,
       content: data.content,
       channel_id: data.channel_id,
       cover: {
         type: imageType,
-        images: images.map(image => image.response.data.url)
+        images: images.map(image => image.response ? image.response.data.url : image.url)
       }
-    })
-    message.success('发布成功')
+    }
+    if (articleId) {
+      reqData.id = articleId
+      await updateArticleAPI(reqData)
+    } else {
+      await publishArticleAPI(reqData)
+    }
+    message.success(`${articleId ? '保存' : '发布'}成功`)
   }
 
   return (
@@ -47,7 +72,7 @@ const Publish = () => {
         title={
           <Breadcrumb items={[
             { title: <Link to={'/'}>首页</Link> },
-            { title: '发布文章' },
+            { title: `${articleId ? '编辑' : '发布'}文章` },
           ]}
           />
         }
@@ -57,6 +82,7 @@ const Publish = () => {
           wrapperCol={{ span: 16 }}
           initialValues={{ type: 0 }}
           onFinish={onFinish}
+          form={form}
         >
           <Form.Item
             label="标题"
@@ -76,7 +102,7 @@ const Publish = () => {
           </Form.Item>
           <Form.Item label="封面">
             <Form.Item name="type">
-              <Radio.Group onChange={e => setImageType(e.target.value) }>
+              <Radio.Group onChange={e => setImageType(e.target.value)}>
                 <Radio value={1}>单图</Radio>
                 <Radio value={3}>三图</Radio>
                 <Radio value={0}>无图</Radio>
@@ -113,7 +139,7 @@ const Publish = () => {
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>
               <Button size="large" type="primary" htmlType="submit">
-                发布文章
+                {articleId ? '保存修改' : '发布文章'}
               </Button>
             </Space>
           </Form.Item>

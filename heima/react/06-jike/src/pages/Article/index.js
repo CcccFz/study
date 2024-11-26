@@ -107,8 +107,8 @@ const Article = () => {
       ...params,
       status: data.status,
       channel_id: data.channel_id,
-      begin_pubdate: data.date[0].format('YYYY-MM-DD'),
-      end_pubdate: data.date[1].format('YYYY-MM-DD'),
+      begin_pubdate: data.date && data.date[0].format('YYYY-MM-DD'),
+      end_pubdate: data.date && data.date[1].format('YYYY-MM-DD'),
     })
   }
 
@@ -118,7 +118,17 @@ const Article = () => {
   }
 
   const onPageChange = page => {
-    setParams({...params, page})
+    setParams(params => ({
+      ...params,
+      page: page
+    }))
+  }
+
+  const onPageSizeChange = (_, size) => {
+    setParams(params => ({
+      ...params,
+      per_page: size,
+    }))
   }
 
   return (
@@ -164,9 +174,12 @@ const Article = () => {
         </Form>
       </Card>
       <Card title={`根据筛选条件共查询到 ${total} 条结果：`}>
-        <Table rowKey="id" columns={columns} dataSource={articles} onChange={onPageChange} pagination={{
+        <Table rowKey="id" columns={columns} dataSource={articles} pagination={{
+          total,
           pageSize: params.per_page,
-          total
+          onChange: onPageChange,
+          showSizeChanger: true,
+          onShowSizeChange: onPageSizeChange,
         }} />
       </Card>
     </div>

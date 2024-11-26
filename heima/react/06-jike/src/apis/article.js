@@ -29,3 +29,19 @@ export function delArticleAPI(id) {
     method: 'DELETE',
   })
 } 
+
+
+export function getArticleAPI(id) {
+  return http({
+    url: `/mp/articles/${id}`,
+    method: 'GET',
+  })
+}
+
+export function updateArticleAPI(data) {
+  return http({
+    url: `/mp/articles/${data.id}?draft=false`,
+    method: 'PUT',
+    data
+  })
+}
