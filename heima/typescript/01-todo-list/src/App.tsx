@@ -48,11 +48,10 @@ const App = () => {
   }
 
   const toggleTodo = (id: number) => {
-    const idx = todos.findIndex(todo => todo.id === id)
-    if (idx === -1) return
-    const newTodos = [...todos]
-    newTodos[idx].done = !newTodos[idx].done
-    setTodos(newTodos)
+    setTodos(todos.map(todo => {
+      if (todo.id !== id) return todo
+      return {...todo, done: !todo.done }
+    }))
   }
 
   return (
