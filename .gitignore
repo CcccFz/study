@@ -1,3 +1,11 @@
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+
+venv
+*.pyc
+_site
+
 dist
 node_modules
 build
