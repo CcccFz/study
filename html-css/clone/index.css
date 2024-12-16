@@ -1,0 +1,114 @@
+.box {
+  width: 1280px;
+  height: 720px;
+}
+.bg {
+  position: relative;
+  top: -200px;
+  height: 588px;
+  background-color: #e4e4f6;
+}
+.floor {
+  height: 132px;
+  background-color: #cec3c1;
+}
+.bar1 {
+  position: absolute;
+  width: 374px;
+  top: 24px;
+  left: -154px;
+  border-bottom: 110px solid #7f83db;
+  border-right: 110px solid transparent;
+  transform: rotate(45deg);
+}
+.bar2 {
+  position: absolute;
+  width: 673px;
+  top: 295px;
+  left: -187px;
+  border-bottom: 110px solid #93cae4;
+  border-right: 110px solid transparent;
+  transform: rotate(45deg);
+}
+
+.help {
+  position: fixed;
+  right: 50px;
+  bottom: 100px;
+  width: 300px;
+  height: 30px;
+  background-color: aquamarine;
+  text-align: center
+}
+.help > .d1 {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+}
+.help > .d2 {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: purple;
+}
+
+
+.btn {
+  height: 30px;
+  background-color: orange;
+  text-align: center;
+  color: #fff;
+  line-height: 30px;
+  margin: 0 auto 5px auto;
+  border-radius: 999px;
+}
+.btn-1 {
+  width: 50px;
+}
+.btn-2 {
+  width: 60px;
+}
+.btn-3 {
+  width: 90px;
+}
+.btn-4 {
+  width: 120px;
+}
+.btn-5 {
+  width: 150px;
+}
+
+
+.flex-demo {
+  display: flex;
+}
+.flex-demo > div {
+  background-color: #93cae4;
+}
+.flex-demo > div:nth-child(2) {
+  flex: 1;
+  background-color: aquamarine;
+}
+.flex-demo > div:nth-child(3) {
+  flex: 1;
+  background-color: aqua;
+}
+
+
+.grid-demo {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* grid-template-rows: 100px 200px 300px; */
+  grid-auto-rows: 100px;
+  margin-top: 20px;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.grid-demo > div {
+  /* padding: 20px; */
+  background-color: aquamarine;
+}
+

@@ -1,0 +1,30 @@
+@tailwind base;
+/* @layer base {
+  a {display: block}
+  div {border-width: 2px}
+} */
+
+@tailwind utilities;
+@layer utilities {
+  /* .box {
+    height: 30px;
+    background-color: orange;
+    text-align: center;
+    color: #fff;
+    line-height: 30px;
+    margin: 0 auto 5px auto;
+    border-radius: 999px;
+  } */
+}
+
+@tailwind components;
+@layer components {
+  .custom-btn {
+    @apply py-1 bg-green-400 text-center text-white leading-10 rounded-xl hover:bg-green-500
+  }
+
+  .custom-px {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}

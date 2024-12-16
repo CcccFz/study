@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #454545;
+  text-decoration: none;
+}
+
+#app {
+  font-family: "Alibaba PuHuiTi 2.0";
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: #000;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  max-width: 92%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-left img {
+  width: 245px;
+  height: 38px;
+}
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+}
+.header-nav a {
+  color: #fff;
+  font-size: 13px;
+}
+
+.header-right {
+  flex: 1;
+  text-align: right;
+}
+.header-login {
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+  line-height: 40px;
+  width: 90px;
+  height: 40px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.header-login:hover {
+  background-color: #1273ff;
+  border: 1px solid #1273ff;
+}
+
+
+.banner {
+  position: relative;
+}
+.banner > img {
+  width: 100%;
+}
+.banner-content {
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  color: #fff;
+}
+.banner-content h1 {
+  margin: 20px 0;
+  font-size: 35px;
+}
+.banner-content ul {
+  margin: 20px 0;
+}
+.banner-content li {
+  float: left;
+  margin-right: 20px;
+  list-style-type: none;
+  font-size: 20px;
+}
+.banner-content a {
+  margin: 40px 0;
+}
+
+
+.home-item {
+  display: flex;
+  justify-content: center;
+  margin-top: 250px;
+  gap: 80px;
+}
+.home-item-view {
+  width: 674px;
+}
+.home-item-view img {
+  width: 100%;
+  border-bottom: 15px solid #282c2f;
+  border-left: 10px solid #282c2f;
+  border-right: 10px solid #282c2f;
+  border-radius: 27px;
+}
+.home-item-desc {
+  margin-top: 90px;
+}
+.home-item-desc h1 {
+  margin: 30px 0;
+}
+.home-item-desc li {
+  margin: 10px 0;
+}
+
+footer {
+  margin-top: 2000px;
+}

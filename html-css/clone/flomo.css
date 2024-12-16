@@ -1,0 +1,127 @@
+* {
+  font-family: 'Barlow-Regular','PingFang SC',Helvetica,Arial,sans-serif;
+}
+body {
+  margin: 0;
+  background-color: #f2f2f2;
+}
+p {
+  margin: 10px 0;
+}
+a {
+  text-decoration: none;
+  color: #454545;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+.top {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+header .logo img {
+  width: 120px;
+  height: 26px;
+}
+header .menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Barlow-Regular','PingFang SC',Helvetica,Arial,sans-serif;
+}
+header .menu span {
+  margin: 0 15px;
+}
+.link-green-btn {
+  background-color: #30CF79;
+  padding: 8px 10px;
+  border-radius: 6px;
+  box-sizing: content-box;
+  color: #fff;
+  line-height: 20px;
+}
+.link-green-btn:hover {
+  background-color: #2cae69;
+}
+
+
+main {
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+main > div {
+  margin: 100px 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+main > div:nth-child(1) {
+  border-top: none
+}
+.intro-first > h1 {
+  font-size: 48px;
+}
+.intro-first > h1 > span {
+  color: #30CF79;
+}
+.winner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.winner a,
+.winner img {
+  margin: 0 10px;
+  width: 190px;
+  height: 80px;
+}
+
+
+
+.intro-demo-write-item {
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  text-align: left;
+  justify-content: space-between;
+}
+.intro-demo-write-item a {
+  color: blue;
+  margin-right: 10px;
+}
+.intro-demo-write-item .title {
+  font-weight: 600;
+    font-size: 48px;
+    line-height: 120%;
+    color: #454545;
+    margin: 22px 0;
+}
+.intro-demo-write-left {
+  /* flex : 1 */
+}
+.intro-demo-write-right {
+  /* flex : 2 */
+}
+.intro-demo-write-right img {
+  width: 600px;
+  height: 400px;
+}
+
+
+footer {
+  margin-top: 1000px;
+}
