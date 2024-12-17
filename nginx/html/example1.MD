@@ -1,0 +1,14 @@
+（1）有如下访问：
+	http://192.168.200.133:8081/server1/location1
+		访问的是：index_sr1_location1.html
+	http://192.168.200.133:8081/server1/location2
+		访问的是：index_sr1_location2.html
+	http://192.168.200.133:8082/server2/location1
+		访问的是：index_sr2_location1.html
+	http://192.168.200.133:8082/server2/location2
+		访问的是：index_sr2_location2.html
+（2）如果访问的资源不存在，
+	返回自定义的404页面
+（3）将/server1和/server2的配置使用不同的配置文件分割
+	将文件放到/home/www/conf.d目录下，然后使用include进行合并
+（4）为/server1和/server2各自创建一个访问日志文件
