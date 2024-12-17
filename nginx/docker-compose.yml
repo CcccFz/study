@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  web:
+    hostname: nginx
+    image: registry.cn-chengdu.aliyuncs.com/shy-base/nginx:1.16.1
+    container_name: nginx
+    privileged: true
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /root/repo/study/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /root/repo/study/nginx/html:/usr/share/nginx/html
+      - /root/repo/study/nginx/access.log:/var/log/nginx/access.log
+      - /root/repo/study/nginx/error.log:/var/log/nginx/error.log
