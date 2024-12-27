@@ -12,6 +12,8 @@ services:
       - 8010:8010
       - 8021:8021
       - 8022:8022
+      - 8031:8031
+      - 8032:8032
     volumes:
       - /root/repo/study/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /root/repo/study/nginx/conf.d:/etc/nginx/conf.d
