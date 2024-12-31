@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  web:
+  nginx:
     hostname: nginx
     image: registry.cn-chengdu.aliyuncs.com/shy-base/nginx:1.16.1
     container_name: nginx
@@ -9,6 +9,7 @@ services:
     restart: always
     ports:
       - 80:80
+      - 443:443
       - 8010:8010
       - 8021:8021
       - 8022:8022
@@ -18,3 +19,4 @@ services:
       - /root/repo/study/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /root/repo/study/nginx/conf.d:/etc/nginx/conf.d
       - /root/repo/study/nginx/html:/usr/share/nginx/html
+      - /root/repo/study/nginx/ssl:/opt/ssl
