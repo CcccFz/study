@@ -3,7 +3,7 @@ version: "3"
 services:
   nginx:
     hostname: nginx
-    image: registry.cn-chengdu.aliyuncs.com/shy-base/nginx:1.16.1
+    image: registry.cn-chengdu.aliyuncs.com/shy-base/nginx:1.22
     container_name: nginx
     privileged: true
     restart: always
