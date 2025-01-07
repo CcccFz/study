@@ -4,6 +4,9 @@ reload:
 	docker-compose -f /root/repo/study/nginx/docker-compose.yml up -d
 	docker exec -it nginx nginx -s reload
 
+test:
+	docker exec -it nginx nginx -t
+
 restart:
 	docker restart nginx	
 

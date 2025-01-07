@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <input type="button" id="btn">Click
-  <script></script>  
+  <button id="btn">Click me</button>
+  <img src="http://localhost:8032/aa.jpg" alt="">
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', async function () {
+      const res = await fetch('http://localhost:8032/get')
+      const data = await res.json()
+      alert(JSON.stringify(data))
+    })
+  </script>
 </body>
+
 </html>
