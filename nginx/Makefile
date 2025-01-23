@@ -1,4 +1,4 @@
-.PHONY: reload restart up exec
+.PHONY: reload test restart exec up
 
 reload:
 	docker-compose -f /root/repo/study/nginx/docker-compose.yml up -d
@@ -12,3 +12,8 @@ restart:
 
 exec:
 	docker exec -it nginx bash
+
+up:
+	-service docker start
+	docker-compose stop
+	make reload
