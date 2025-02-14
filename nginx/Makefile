@@ -15,5 +15,5 @@ exec:
 
 up:
 	-service docker start
-	docker stop web lab edu traefik
+	-docker stop web lab edu traefik
 	make reload
