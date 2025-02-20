@@ -1,5 +1,3 @@
-# langchain v0.2
-
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
@@ -33,15 +31,18 @@ chain = prompt_tmpl | model | parser
 
 # print(chain.invoke({'language': 'English', 'text': '我下午要去约会，不能去上班了'}))
 
+
+
 # 创建fastapi应用
 from fastapi import FastAPI
-from langserve import LangServe
+# from langserve import server
 from langserve import add_routes
 
 app = FastAPI(title='My Langchain Service', version='1.0', description='使用langchain翻译内容')
-add_routes(app, chain, path='/')
-langserve_app = LangServe(app)
+add_routes(app, chain, path='')
+
+# langserve_app = LangServe(app)
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host='localhost', port='8000')
+    uvicorn.run(app, host='localhost', port=8000)
