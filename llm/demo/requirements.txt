@@ -2,4 +2,4 @@
 
 pip install langchain
 pip install langchain-openai
-pip install -qU langchain-openai
+pip install "langserve[all]"
