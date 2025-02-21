@@ -1,7 +1,13 @@
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 
+
+model = ChatOpenAI(model="gpt-4o-mini", base_url="https://www.dmxapi.com/v1")
+parser = StrOutputParser()
 
 documents = [
   Document(page_content="狗是伟大的伴侣，以其忠诚和友好而闻名。", metadata={"source": "哺乳动物宠物文档"}),
@@ -12,6 +18,31 @@ documents = [
 ]
 
 # 实例向量空间
-vector_store = Chroma.from_documents(documents, embedding=OpenAIEmbeddings())
+vector_store = Chroma.from_documents(
+    documents,
+    embedding=OpenAIEmbeddings(base_url='https://www.dmxapi.com/v1'),
+)
+
 # 相似度查询，且返回相似度分数，分数越低相似度越高
-print(vector_store.similarity_search_with_score('咖啡猫'))
+# print(vector_store.similarity_search_with_score('咖啡猫'))
+
+# 检索器
+retriever = RunnableLambda(vector_store.similarity_search).bind(k=1)
+
+# print(retriever.batch(['咖啡猫', '鲨鱼']))
+
+msg = """
+使用提供的上下文仅回答这个问题。
+{question}
+上下文:
+{context}
+"""
+
+prompt_tmpl = ChatPromptTemplate.from_messages([
+    ('human', msg)
+])
+
+# RunnablePassthrough允许将问题之后再传给prompt模板和model
+chain = {'question': RunnablePassthrough(), 'context': retriever} | prompt_tmpl | model | parser
+
+print(chain.invoke('请介绍一下猫？'))
