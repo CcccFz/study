@@ -3,7 +3,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from fastapi import FastAPI
 from langserve import add_routes
-import uvicorn
+
 
 model = ChatOpenAI(model="gpt-4o-mini", base_url="https://www.dmxapi.com/v1")
 parser = StrOutputParser()
@@ -17,4 +17,5 @@ app = FastAPI(title='My Langchain Service', version='1.0', description='使用la
 add_routes(app, chain, path='')
 
 if __name__ == '__main__':
+    import uvicorn
     uvicorn.run(app, host='localhost', port=8000)

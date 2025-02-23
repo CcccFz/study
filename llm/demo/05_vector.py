@@ -27,7 +27,11 @@ vector_store = Chroma.from_documents(
 # print(vector_store.similarity_search_with_score('咖啡猫'))
 
 # 检索器
-retriever = RunnableLambda(vector_store.similarity_search).bind(k=1)
+# retriever = RunnableLambda(vector_store.similarity_search).bind(k=1)
+retriever = vector_store.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 1},
+)
 
 # print(retriever.batch(['咖啡猫', '鲨鱼']))
 
