@@ -3,7 +3,10 @@
 */*/.DS_Store
 
 venv
+*_venv
 *.pyc
+.env
+*.env
 _site
 
 dist
